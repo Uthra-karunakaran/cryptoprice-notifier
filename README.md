@@ -8,4 +8,8 @@
   <li>Mailgun API: Sends instant email notifications to keep you updated.</li>
 </ul>
 
+<p>
+  Note: To start the project , you have to use the requirements.txt to 
+</p>
+
 <p>This project combines various technologies and APIs to provide valuable real-time insights into the crypto market. If you're interested in crypto, APIs, or Python, I'd love to connect and discuss!</p>
