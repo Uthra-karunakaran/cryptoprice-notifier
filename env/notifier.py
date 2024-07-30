@@ -1,7 +1,15 @@
 import redis
 import requests
 from datetime import timedelta
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+
+mailgun_sandbox=os.getenv('MALIGUN_SANDBOX')
+mailgun_apiKey=os.getenv('MALIGUN_API_KEY')
+your_email=os.getenv('YOUR_EMAIL')
+#print(mailgun_apiKey,mailgun_sandbox,your_email)
 #https://api.coingecko.com/api/v3/
 API_HOST="https://api.coingecko.com/api/v3"
 coin_to_notify_price={
@@ -66,17 +74,6 @@ for coin_id,coin_detail in coin_data.items():
 # after writing in redis , have to check whether to send an email or not
 #send email using mailgun
 
-#sandbox08a6ea354c1146fe9bdd4378ea28be0d.mailgun.org
-# response = requests.post(
-#     "https://api.mailgun.net/v3/sandbox08a6ea354c1146fe9bdd4378ea28be0d.mailgun.org/messages",
-#     auth=("api", "1505db84a77273509593d29ff544fdfe-0f1db83d-fa987b2b"),
-#     data={
-#         "from": "Mailgun sandbox <postmaster@sandbox08a6ea354c1146fe9bdd4378ea28be0d.mailgun.org>",
-#         "to": "uthra0864@gmail.com",
-#         "subject": "text email",
-#         "text": "hey there"
-#     }
-# )
 
 # # Print the response to debug any issues
 # print(response.status_code)
@@ -84,10 +81,10 @@ for coin_id,coin_detail in coin_data.items():
 #func for sending email using mailgun
 def send_email(subject,text):
   	return requests.post(
-  		"https://api.mailgun.net/v3/sandbox08a6ea354c1146fe9bdd4378ea28be0d.mailgun.org/messages",
-  		auth=("api", "1505db84a77273509593d29ff544fdfe-0f1db83d-fa987b2b"),
-  		data={"from": "Mailgun sandbox <postmaster@sandbox08a6ea354c1146fe9bdd4378ea28be0d.mailgun.org>",
-  			"to": "uthra0864@gmail.com",
+  		f"https://api.mailgun.net/v3/{mailgun_sandbox}/messages",
+  		auth=("api", f"{mailgun_apiKey}"),
+  		data={"from": f"Mailgun sandbox <postmaster@{mailgun_sandbox}>",
+  			"to": f"{your_email}",
   			"subject": subject,
   			"text": text
             }
@@ -117,6 +114,7 @@ for coin in coin_ids:
 
 
 '''
+sample query
 [
   {
     #"id": "bitcoin",
