@@ -9,7 +9,7 @@
 </ul>
 
 <p>
-  Note: To start the project , you have to use the requirements.txt to 
+  Note: To start the project , you have to use the requirements.txt to set up your envinorment , start your redis server and should have your mailgun account
 </p>
 
 <p>This project combines various technologies and APIs to provide valuable real-time insights into the crypto market. If you're interested in crypto, APIs, or Python, I'd love to connect and discuss!</p>
