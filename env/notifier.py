@@ -95,14 +95,14 @@ for coin in coin_ids:
     if last_price <= coin_to_notify_price[coin]:
         print("the price is below the notify price sending email")
         sub="Buy your ideal coin!"
-        txt=f"the price of {coin} have reach your notification price , it's currently {last_price}"
+        txt=f"Hi Uthra , the price of {coin} have reach your notification price , it's currently {last_price}"
         print(send_email(sub,txt))
 
     last_24_price=float(r.get(f"{coin}|lowest_in_24"))
     if last_price<=last_24_price:
         print("price lowest in last 24 hours sending email")
         sub="new lowest price in last 24hrs!"
-        txt=f"the price of {coin} have reach a new 24 hour lowest price , it's currently {last_price}"
+        txt=f"Hi uthra , the price of {coin} have reach a new 24 hour lowest price , it's currently {last_price}"
         send_email(sub,txt)
         r.setex(
             f"{coin}|lowest_in_24",
